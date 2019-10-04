@@ -11,10 +11,22 @@ const LinkProvider: React.FC<{ value: string }> = ({ value, children }) => (
 
 function useCheckSameOrigin(url: UrlObject | string) {
   const domain = React.useContext(LinkContext);
+  if (!domain) {
+    throw new Error(`Link must be used within a LinkProvider`);
+  }
+
   const href = typeof url === 'string' ? parse(url) : url;
+
+  // if href doesnt have a protocol or a hostname, it's _probably_ an internal link
   if (!href.protocol || !href.hostname) return true;
-  if (!/^https?/.test(href.protocol)) return false;
-  return href.hostname === domain;
+
+  // check if the value in the LinkProvider starts with https? if not, add both to regex
+  const regex = new RegExp(
+    /^https?/.test(domain) ? domain : `http://${domain}|https://${domain}`
+  );
+
+  // compare href to value in LinkProvider
+  return regex.test(href.hostname);
 }
 
 const Link: React.FC<LinkProps> = ({ children, href, ...props }) => {
