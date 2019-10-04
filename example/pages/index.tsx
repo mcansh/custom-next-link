@@ -10,6 +10,11 @@ const App = () => {
         </Link>
       </div>
       <div>
+        <Link href="https://mcan.sh" newTab={false}>
+          <a>External link in the same tab</a>
+        </Link>
+      </div>
+      <div>
         <Link href="/internal">
           <a>This will render a regular next link</a>
         </Link>
