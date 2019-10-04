@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Link } from '../..';
+import { Link, LinkProvider } from '../..';
 
 const App = () => {
   return (
-    <>
+    <LinkProvider value="next-link.mcan.sh">
       <div>
         <Link href="https://mcan.sh">
           <a>This should open in a new tab</a>
@@ -19,7 +19,7 @@ const App = () => {
           <a>This will render a regular next link</a>
         </Link>
       </div>
-    </>
+    </LinkProvider>
   );
 };
 
