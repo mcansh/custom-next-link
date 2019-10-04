@@ -5,8 +5,13 @@ const App = () => {
   return (
     <>
       <div>
-        <Link href="https://mcan.sh" newTab={false}>
+        <Link href="https://mcan.sh">
           <a>This should open in a new tab</a>
+        </Link>
+      </div>
+      <div>
+        <Link href="https://mcan.sh" newTab={false}>
+          <a>External link in the same tab</a>
         </Link>
       </div>
       <div>
