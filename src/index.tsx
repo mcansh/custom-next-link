@@ -17,7 +17,11 @@ function useCheckSameOrigin(url: UrlObject | string) {
   return href.hostname === domain;
 }
 
-const Link: React.FC<LinkProps> = ({ children, href, ...props }) => {
+interface Props extends LinkProps {
+  newTab?: boolean;
+}
+
+const Link: React.FC<Props> = ({ children, href, newTab = true, ...props }) => {
   const isSameOrigin = useCheckSameOrigin(href);
 
   if (isSameOrigin) {
@@ -31,11 +35,14 @@ const Link: React.FC<LinkProps> = ({ children, href, ...props }) => {
   return (
     <>
       {React.Children.map(children, child => {
-        const options = {
-          href: typeof href === 'string' ? href : format(href),
-          target: '_blank',
-          rel: 'noopener external nofollow noreferrer',
-        };
+        const formatted = typeof href === 'string' ? href : format(href);
+        const options = newTab
+          ? {
+              href: formatted,
+              target: '_blank',
+              rel: 'noopener external nofollow noreferrer',
+            }
+          : { href: formatted };
 
         return React.cloneElement(child as any, options);
       })}

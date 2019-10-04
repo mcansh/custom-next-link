@@ -5,7 +5,7 @@ const App = () => {
   return (
     <>
       <div>
-        <Link href="https://mcan.sh">
+        <Link href="https://mcan.sh" newTab={false}>
           <a>This should open in a new tab</a>
         </Link>
       </div>
