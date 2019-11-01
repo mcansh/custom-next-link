@@ -13,14 +13,19 @@ jobs:
         with:
           node-version: '10.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm install -g npm@next
-      - run: npm install
-      - run: npm publish --access public
+      - run: |
+          npm install -g npm@next
+          npm install
+          npm run build
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v1
         with:
           registry-url: 'https://npm.pkg.github.com'
-      - run: npm publish
+      - run: |
+          npm install
+          npm run build
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
