@@ -62,4 +62,4 @@ const Link: React.FC<Props> = ({ children, href, newTab = true, ...props }) => {
   );
 };
 
-export { Link, LinkProvider };
+export { Link, LinkProvider, useCheckSameOrigin };
