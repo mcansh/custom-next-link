@@ -33,7 +33,7 @@
     "@types/react": "16.9.5",
     "@types/react-dom": "16.9.1",
     "husky": "3.0.8",
-    "next": "9.0.7",
+    "next": "9.5.5",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "tsdx": "0.9.3",
